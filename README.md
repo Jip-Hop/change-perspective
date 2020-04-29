@@ -7,7 +7,7 @@ Based on [change-perspective](https://github.com/Volst/change-perspective).
 ## Install
 
 ```
-npm install css3-perspective
+Copy index.js where you need it (rename if you like).
 ```
 
 ## Usage
