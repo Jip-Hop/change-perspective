@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 function dim(x) {
-    var y;
+    let y;
     if (typeof x === 'object') {
         y = x[0];
         if (typeof y === 'object') {
@@ -15,18 +13,18 @@ function _foreach2(x, s, k, f) {
     if (k === s.length - 1) {
         return f(x);
     }
-    var i;
-    var n = s[k];
-    var ret = Array(n);
+    let i;
+    const n = s[k];
+    const ret = Array(n);
     for (i = n - 1; i >= 0; i--) {
         ret[i] = _foreach2(x[i], s, k + 1, f);
     }
     return ret;
 }
 function cloneV(x) {
-    var _n = x.length;
-    var i;
-    var ret = Array(_n);
+    const _n = x.length;
+    let i;
+    const ret = Array(_n);
     for (i = _n - 1; i !== -1; --i) {
         ret[i] = x[i];
     }
@@ -35,17 +33,17 @@ function cloneV(x) {
 function clone(x) {
     if (typeof x !== 'object')
         return x;
-    var V = cloneV;
-    var s = dim(x);
+    const V = cloneV;
+    const s = dim(x);
     return _foreach2(x, s, 0, V);
 }
 function diag(d) {
-    var i;
-    var i1;
-    var j;
-    var n = d.length;
-    var A = Array(n);
-    var Ai;
+    let i;
+    let i1;
+    let j;
+    const n = d.length;
+    const A = Array(n);
+    let Ai;
     for (i = n - 1; i >= 0; i--) {
         Ai = Array(n);
         i1 = i + 2;
@@ -72,9 +70,9 @@ function rep(s, v, k) {
     if (typeof k === 'undefined') {
         k = 0;
     }
-    var n = s[k];
-    var ret = Array(n);
-    var i;
+    const n = s[k];
+    const ret = Array(n);
+    let i;
     if (k === s.length - 1) {
         for (i = n - 2; i >= 0; i -= 2) {
             ret[i + 1] = v;
@@ -94,16 +92,16 @@ function identity(n) {
     return diag(rep([n], 1));
 }
 function inv(a) {
-    var s = dim(a);
-    var abs = Math.abs;
-    var m = s[0];
-    var n = s[1];
-    var A = clone(a);
-    var Ai;
-    var Aj;
-    var I = identity(m);
-    var Ii;
-    var Ij;
+    const s = dim(a);
+    const abs = Math.abs;
+    const m = s[0];
+    const n = s[1];
+    const A = clone(a);
+    let Ai;
+    let Aj;
+    const I = identity(m);
+    let Ii;
+    let Ij;
     var i, j, k, x;
     for (j = 0; j < n; ++j) {
         var i0 = -1;
@@ -170,19 +168,19 @@ function dotMMsmall(x, y) {
     return ret;
 }
 function dotMV(x, y) {
-    var p = x.length;
-    var i;
-    var ret = Array(p);
+    const p = x.length;
+    let i;
+    const ret = Array(p);
     for (i = p - 1; i >= 0; i--) {
         ret[i] = dotVV(x[i], y);
     }
     return ret;
 }
 function dotVV(x, y) {
-    var i;
-    var n = x.length;
-    var i1;
-    var ret = x[n - 1] * y[n - 1];
+    let i;
+    const n = x.length;
+    let i1;
+    let ret = x[n - 1] * y[n - 1];
     for (i = n - 2; i >= 1; i -= 2) {
         i1 = i - 1;
         ret += x[i] * y[i] + x[i1] * y[i1];
@@ -193,14 +191,14 @@ function dotVV(x, y) {
     return ret;
 }
 function transpose(x) {
-    var i;
-    var j;
-    var m = x.length;
-    var n = x[0].length;
-    var ret = Array(n);
-    var A0;
-    var A1;
-    var Bj;
+    let i;
+    let j;
+    const m = x.length;
+    const n = x[0].length;
+    const ret = Array(n);
+    let A0;
+    let A1;
+    let Bj;
     for (j = 0; j < n; j++)
         ret[j] = Array(m);
     for (i = m - 1; i >= 1; i -= 2) {
@@ -239,11 +237,11 @@ function round(num) {
 }
 function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
     if (isInverse) {
-        var tmp = dstPts;
+        const tmp = dstPts;
         dstPts = srcPts;
         srcPts = tmp;
     }
-    var r1 = [
+    const r1 = [
         srcPts[0],
         srcPts[1],
         1,
@@ -253,7 +251,7 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[0] * srcPts[0],
         -1 * dstPts[0] * srcPts[1],
     ];
-    var r2 = [
+    const r2 = [
         0,
         0,
         0,
@@ -263,7 +261,7 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[1] * srcPts[0],
         -1 * dstPts[1] * srcPts[1],
     ];
-    var r3 = [
+    const r3 = [
         srcPts[2],
         srcPts[3],
         1,
@@ -273,7 +271,7 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[2] * srcPts[2],
         -1 * dstPts[2] * srcPts[3],
     ];
-    var r4 = [
+    const r4 = [
         0,
         0,
         0,
@@ -283,7 +281,7 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[3] * srcPts[2],
         -1 * dstPts[3] * srcPts[3],
     ];
-    var r5 = [
+    const r5 = [
         srcPts[4],
         srcPts[5],
         1,
@@ -293,7 +291,7 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[4] * srcPts[4],
         -1 * dstPts[4] * srcPts[5],
     ];
-    var r6 = [
+    const r6 = [
         0,
         0,
         0,
@@ -303,7 +301,7 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[5] * srcPts[4],
         -1 * dstPts[5] * srcPts[5],
     ];
-    var r7 = [
+    const r7 = [
         srcPts[6],
         srcPts[7],
         1,
@@ -313,7 +311,7 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[6] * srcPts[6],
         -1 * dstPts[6] * srcPts[7],
     ];
-    var r8 = [
+    const r8 = [
         0,
         0,
         0,
@@ -323,35 +321,42 @@ function getNormalizationCoefficients(srcPts, dstPts, isInverse) {
         -1 * dstPts[7] * srcPts[6],
         -1 * dstPts[7] * srcPts[7],
     ];
-    var matA = [r1, r2, r3, r4, r5, r6, r7, r8];
-    var matB = dstPts;
-    var matC;
+    const matA = [r1, r2, r3, r4, r5, r6, r7, r8];
+    const matB = dstPts;
+    let matC;
     try {
         matC = inv(dotMMsmall(transpose(matA), matA));
     }
     catch (e) {
         return [1, 0, 0, 0, 1, 0, 0, 0];
     }
-    var matD = dotMMsmall(matC, transpose(matA));
-    var matX = dotMV(matD, matB);
+    const matD = dotMMsmall(matC, transpose(matA));
+    const matX = dotMV(matD, matB);
     for (var i = 0; i < matX.length; i++) {
         matX[i] = round(matX[i]);
     }
     matX[8] = 1;
     return matX;
 }
-function applyTransform(coeffs, x, y) {
-    var coordinates = [];
-    coordinates[0] =
-        (coeffs[0] * x + coeffs[1] * y + coeffs[2]) /
-            (coeffs[6] * x + coeffs[7] * y + 1);
-    coordinates[1] =
-        (coeffs[3] * x + coeffs[4] * y + coeffs[5]) /
-            (coeffs[6] * x + coeffs[7] * y + 1);
-    return coordinates;
+export default function fixPerspective(srcPts, dstPts) {
+    const h = getNormalizationCoefficients(srcPts, dstPts, false);
+    const H = [
+        h[0],
+        h[3],
+        0,
+        h[6],
+        h[1],
+        h[4],
+        0,
+        h[7],
+        0,
+        0,
+        1,
+        0,
+        h[2],
+        h[5],
+        0,
+        h[8]
+    ];
+    return H;
 }
-function fixPerspective(srcPts, dstPts) {
-    var coeffs = getNormalizationCoefficients(srcPts, dstPts, false);
-    return function (x, y) { return applyTransform(coeffs, x, y); };
-}
-exports.default = fixPerspective;

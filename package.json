@@ -1,10 +1,10 @@
 {
-  "name": "change-perspective",
-  "version": "1.0.1",
-  "description": "Very small JavaScript library for creating and applying perspective transforms",
+  "name": "css3-perspective",
+  "version": "1.0.0",
+  "description": "Very small JavaScript library for for creating CSS3 perspective transforms",
   "license": "MIT",
-  "author": "Kees Kluskens <kees@volst.nl>",
-  "repository": "Volst/change-perspective",
+  "author": "Jip-Hop <Jip-Hop@live.nl>",
+  "repository": "Jip-Hop/css3-perspective",
   "keywords": [
     "perspective",
     "transform"
@@ -19,6 +19,6 @@
     "prepublishOnly": "npm run -s build"
   },
   "devDependencies": {
-    "typescript": "^3.3.3333"
+    "typescript": "^3.8.3"
   }
 }

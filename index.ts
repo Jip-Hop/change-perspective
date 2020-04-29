@@ -367,18 +367,27 @@ function getNormalizationCoefficients(
   return matX as QuadPoints;
 }
 
-function applyTransform(coeffs: QuadPoints, x: number, y: number): SinglePoint {
-  const coordinates = [];
-  coordinates[0] =
-    (coeffs[0] * x + coeffs[1] * y + coeffs[2]) /
-    (coeffs[6] * x + coeffs[7] * y + 1);
-  coordinates[1] =
-    (coeffs[3] * x + coeffs[4] * y + coeffs[5]) /
-    (coeffs[6] * x + coeffs[7] * y + 1);
-  return coordinates as SinglePoint;
-}
-
 export default function fixPerspective(srcPts: QuadPoints, dstPts: QuadPoints) {
-  const coeffs = getNormalizationCoefficients(srcPts, dstPts, false);
-  return (x: number, y: number) => applyTransform(coeffs, x, y);
+  const h = getNormalizationCoefficients(srcPts, dstPts, false);
+
+  const H = [
+    h[0],
+    h[3],
+    0,
+    h[6],
+    h[1],
+    h[4],
+    0,
+    h[7],
+    0,
+    0,
+    1,
+    0,
+    h[2],
+    h[5],
+    0,
+    h[8]
+  ];
+
+  return H;
 }
